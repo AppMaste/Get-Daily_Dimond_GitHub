@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'Mediaqure.dart';
@@ -27,9 +28,14 @@ appBar(BuildContext context, String title) {
     centerTitle: true,
     elevation: 0,
     backgroundColor: Colors.transparent,
-    leading: Image.asset(
-      "assets/Icons/arrowcircleleft.png",
-      scale: 2.1,
+    leading: GestureDetector(
+      onTap: () {
+        Get.back();
+      },
+      child: Image.asset(
+        "assets/Icons/arrowcircleleft.png",
+        scale: 2.1,
+      ),
     ),
     title: Text(
       title,
@@ -236,8 +242,8 @@ HomeContainerWidget(BuildContext context, String icon, String title,
 }
 
 ///////////////////////////////////////// Get Free Diamond Screen //////////////////////////////////////////////////////
-petContainerWidget(
-    BuildContext context, String title, String title2, var ontap) {
+petContainerWidget(BuildContext context, String title, String title2, var ontap,
+    String image, var scale) {
   return GestureDetector(
     onTap: ontap,
     child: Container(
@@ -248,7 +254,8 @@ petContainerWidget(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(height: ScreenSize.fSize_80()),
+          SizedBox(height: ScreenSize.fSize_20()),
+          Image.asset(image, scale: scale),
           Text(
             title,
             style: GoogleFonts.beVietnamPro(
@@ -357,10 +364,15 @@ ContainerWidget2(BuildContext context, String title, var ontap) {
                     child: Row(
                       children: [
                         SizedBox(width: ScreenSize.fSize_25()),
-                        Text(
-                          title,
-                          style: GoogleFonts.beVietnamPro(
-                              fontSize: ScreenSize.fSize_17()),
+                        Container(
+                          width: ScreenSize.horizontalBlockSize! * 67,
+                          color: Colors.transparent,
+                          child: Text(
+                            title,
+                            overflow: TextOverflow.ellipsis,
+                            style: GoogleFonts.beVietnamPro(
+                                fontSize: ScreenSize.fSize_17()),
+                          ),
                         ),
                       ],
                     ),

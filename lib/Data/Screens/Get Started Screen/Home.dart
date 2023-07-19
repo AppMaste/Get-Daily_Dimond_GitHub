@@ -2,12 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_daily_dimond/Data/Screens/Get%20Diamond%20Tips%20Screen/Get%20Diamond%20Tips.dart';
 import 'package:get_daily_dimond/Data/Screens/Get%20Free%20Diamond%20Screen/Get%20Free%20Diamond.dart';
 import 'package:get_daily_dimond/Data/Widgets/Widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 import '../../Widgets/Mediaqure.dart';
+import '../Wallpaper Screen/Wallpaper.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -158,17 +160,14 @@ class HomePage extends StatelessWidget {
                     context,
                     "assets/Icons/Get diamond tips.png",
                     "Get Diamond Tips",
-                    "Diamond Guide Tips & Tricks",
-                    () {},
-                    2.1),
+                    "Diamond Guide Tips & Tricks", () {
+                  Get.to(() => GetDiamondTipsPage());
+                }, 2.1),
                 SizedBox(height: ScreenSize.fSize_20()),
-                HomeContainerWidget(
-                    context,
-                    "assets/Icons/set wallpaper.png",
-                    "Set As Wallpaper",
-                    "Home Screen & Lock Screen",
-                    () {},
-                    2.1),
+                HomeContainerWidget(context, "assets/Icons/set wallpaper.png",
+                    "Set As Wallpaper", "Home Screen & Lock Screen", () {
+                  Get.to(() => WallpaperPage());
+                }, 2.1),
                 SizedBox(height: ScreenSize.fSize_60()),
               ],
             ),
