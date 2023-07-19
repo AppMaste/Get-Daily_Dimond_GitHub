@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "614369195887",
+    "project_id": "get-daily-dimond",
+    "storage_bucket": "get-daily-dimond.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614369195887:android:32c456949fa7d5ebe5da9a",
+        "android_client_info": {
+          "package_name": "com.example.get_daily_dimond"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614369195887-qd29hull90sq1v5uf9n3iqlaeo4av0ec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFeSAEpDUykta0EsLL8m_gbQciWCQYI-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614369195887-qd29hull90sq1v5uf9n3iqlaeo4av0ec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
