@@ -11,6 +11,7 @@ class WeaponsDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("dtaatatatta ${argument}");
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: appBar(context, "Weapons Details"),
@@ -26,10 +27,10 @@ class WeaponsDetailPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Center(
-                    child: Text(
-                      "Image",
-                      style: GoogleFonts.beVietnamPro(
-                          fontSize: ScreenSize.fSize_28()),
+                    child: Image.asset(
+                      argument[1],
+                      // style: GoogleFonts.beVietnamPro(
+                      //     fontSize: ScreenSize.fSize_28()),
                     ),
                   ),
                 ),
@@ -37,31 +38,18 @@ class WeaponsDetailPage extends StatelessWidget {
               SizedBox(height: ScreenSize.fSize_20()),
               Center(
                 child: Text(
-                  "$argument",
+                  "${argument[0]}",
                   style: GoogleFonts.beVietnamPro(
                       fontSize: ScreenSize.fSize_20(),
                       fontWeight: FontWeight.w600),
                 ),
               ),
               SizedBox(height: ScreenSize.fSize_40()),
-              claimContainerWidget(context, "title", () {}),
-              SizedBox(height: ScreenSize.fSize_40()),
-              Text(
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
-                style: GoogleFonts.beVietnamPro(),
-              ),
-              SizedBox(height: ScreenSize.fSize_40()),
-              const Center(child: Text("AD")),
-              SizedBox(height: ScreenSize.fSize_40()),
-              Text(
-                "Robot Pet Information :",
-                style: GoogleFonts.beVietnamPro(),
-              ),
-              SizedBox(height: ScreenSize.fSize_40()),
-              Text(
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
-                style: GoogleFonts.beVietnamPro(),
-              ),
+              claimContainerWidget(context, "Apply", () {}),
+              SizedBox(height: ScreenSize.fSize_30()),
+              argument[2] == "assets/shape/No Data.png"
+                  ? Center(child: Image.asset(argument[2],scale: 2.5,color: Colors.red,))
+                  : Image.asset(argument[2],),
               SizedBox(height: ScreenSize.fSize_60()),
             ],
           ),

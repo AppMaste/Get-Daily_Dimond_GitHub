@@ -12,6 +12,7 @@ class CharacterDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("argument ${argument}");
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: appBar(context, "Characters Detail"),
@@ -30,15 +31,18 @@ class CharacterDetailPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(ScreenSize.fSize_20()),
                     gradient: LinearGradient(colors: MainColor),
                   ),
-                  child: const Center(
-                    child: Text("Image"),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(argument[1]),
+                    ),
                   ),
                 ),
               ),
               SizedBox(height: ScreenSize.fSize_20()),
               Center(
                 child: Text(
-                  argument.toString().toUpperCase(),
+                  argument[0].toString().toUpperCase(),
                   style: GoogleFonts.beVietnamPro(
                       fontSize: ScreenSize.fSize_20(),
                       fontWeight: FontWeight.w600),
@@ -48,17 +52,21 @@ class CharacterDetailPage extends StatelessWidget {
               claimContainerWidget(context, 'Claim Now', () {}),
               SizedBox(height: ScreenSize.fSize_20()),
               Text(
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+                argument[2] == " 			Special ability: !!!"
+                    ? "Data Not Available"
+                    : argument[2].toString().split("\u0009\u0009\u0009")[2],
                 style: GoogleFonts.beVietnamPro(),
               ),
               SizedBox(height: ScreenSize.fSize_20()),
               Text(
-                "$argument Character Information :",
+                "${argument[0]} Character Information :",
                 style: GoogleFonts.beVietnamPro(),
               ),
               SizedBox(height: ScreenSize.fSize_20()),
               Text(
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries",
+                argument[2] == " 			Special ability: !!!"
+                    ? "Data Not Available"
+                    : argument[2].toString().split("\u0009\u0009\u0009")[3],
                 style: GoogleFonts.beVietnamPro(),
               ),
               SizedBox(height: ScreenSize.fSize_60()),

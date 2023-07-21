@@ -79,11 +79,19 @@ flutter:
       - assets/Icons/
       - assets/shape/
       - assets/Image/
+      - assets/Images/
       - assets/Image/car/
       - assets/Image/emot/
       - assets/Image/gun/
+      - assets/Images/Gun Details/
       - assets/Image/para/
       - assets/Image/pet/
+      - assets/Images/Characters/
+      - assets/Images/Gun/
+      - assets/Images/Pets/
+      - assets/Images/Bundles/
+      - assets/Images/vehicles/
+      - assets/Images/Emotes/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

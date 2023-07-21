@@ -28,10 +28,14 @@ class CalculatorPage extends StatelessWidget {
               }),
               SizedBox(height: ScreenSize.fSize_20()),
               calculatorContainerWidget(context, "Normal Calculator",
-                  "assets/Icons/Normal calculator.png", 1, () {}),
+                  "assets/Icons/Normal calculator.png", 1, () {
+                Get.to(() => BasicCalculatorPage());
+              }),
               SizedBox(height: ScreenSize.fSize_20()),
               calculatorContainerWidget(context, "Advance Calculator",
-                  "assets/Icons/Advanced calculator.png", 0, () {}),
+                  "assets/Icons/Advanced calculator.png", 0, () {
+                Get.to(() => BasicCalculatorPage());
+              }),
             ],
           ),
         ),

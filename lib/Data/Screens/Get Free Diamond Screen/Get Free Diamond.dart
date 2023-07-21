@@ -38,10 +38,17 @@ class GetFreeDiamondPage extends StatelessWidget {
                 children: [
                   petContainerWidget(context, "Pets", "Robo", () {
                     Get.to(() => SelectLevelPage());
-                  }, "assets/Image/pet/pet_agent_hop.png", 1.1),
+                  }, "assets/Images/Pets/Agent.png", 2.5,
+                      EdgeInsets.only(bottom: ScreenSize.fSize_15())),
                   petContainerWidget(context, "Weapons", "RGS50", () {
                     Get.to(() => WeaponsPage());
-                  }, "assets/Image/gun/gun_aug.webp", 1.1),
+                  },
+                      "assets/Images/Gun/AK.png",
+                      2.1,
+                      EdgeInsets.only(
+                          left: ScreenSize.fSize_15(),
+                          right: ScreenSize.fSize_15(),
+                          bottom: ScreenSize.fSize_25())),
                 ],
               ),
               SizedBox(height: ScreenSize.fSize_10()),
@@ -53,19 +60,19 @@ class GetFreeDiamondPage extends StatelessWidget {
               SizedBox(height: ScreenSize.fSize_20()),
               HomeContainerWidget(
                   context,
-                  "assets/Image/character_full_1.webp",
+                  "assets/Images/Characters/character_1.png",
                   "Characters",
                   "The most prestigious tech company on the continent.", () {
                 Get.to(() => CharacterPage());
-              }, 1.0),
+              }, 2.0),
               SizedBox(height: ScreenSize.fSize_30()),
               getDiamondWidget(
                   context,
-                  "assets/Icons/started vector.png",
+                  "assets/Images/Bundles/Breakdancer_bundle.png",
                   "Bundles",
                   "The night clown bundles is popular bundles in the game", () {
                 Get.to(() => BundlePage());
-              }, 1.0),
+              }, 2.1),
               SizedBox(height: ScreenSize.fSize_20()),
               Text(
                 "More Function",
@@ -76,12 +83,17 @@ class GetFreeDiamondPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  petContainerWidget(context, "Emots", "Applause", () {
+                  petImageContainerWidget(context, "Emots", "Applause", () {
                     Get.to(() => EmotesPage());
-                  },"assets/Image/emot/n1.webp",1.1),
+                  },
+                      "assets/Images/Emotes/1.png",
+                      1.5,
+                      EdgeInsets.only(bottom: ScreenSize.fSize_20()),
+                      Colors.white),
                   petContainerWidget(context, "Calculator", "Diamond", () {
                     Get.to(() => CalculatorPage());
-                  },"assets/Icons/Calculator.png",1.1),
+                  }, "assets/Icons/Calculator.png", 1.0,
+                      EdgeInsets.only(bottom: ScreenSize.fSize_55())),
                 ],
               ),
               SizedBox(height: ScreenSize.fSize_20()),
@@ -90,10 +102,12 @@ class GetFreeDiamondPage extends StatelessWidget {
                 children: [
                   petContainerWidget(context, "Vehicles", "Sport Car", () {
                     Get.to(() => VehiclesPage());
-                  },"assets/Image/car/car_ambhiblan.webp",1.1),
+                  }, "assets/Images/vehicles/Ambhiblan.png", 2.1,
+                      EdgeInsets.only(bottom: ScreenSize.fSize_45())),
                   petContainerWidget(context, "Parachute", "Cobra", () {
                     Get.to(() => ParachutePage());
-                  },"assets/Image/para/parachute_1.png",1.1),
+                  }, "assets/Image/para/parachute_2.png", 2.1,
+                      EdgeInsets.only(bottom: ScreenSize.fSize_45())),
                 ],
               ),
               SizedBox(height: ScreenSize.fSize_60()),

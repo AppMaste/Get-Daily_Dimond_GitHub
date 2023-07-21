@@ -2,11 +2,9 @@
 
 import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_wallpaper_manager/flutter_wallpaper_manager.dart';
 import 'package:get/get.dart';
-import 'package:get_daily_dimond/Data/Widgets/Mediaqure.dart';
 import 'package:get_daily_dimond/Data/Widgets/Widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -34,7 +32,7 @@ class _SetWallpaperPageState extends State<SetWallpaperPage>
     );
 
     final curvedAnimation =
-    CurvedAnimation(curve: Curves.easeInOut, parent: _animationController);
+        CurvedAnimation(curve: Curves.easeInOut, parent: _animationController);
     _animation = Tween<double>(begin: 0, end: 1).animate(curvedAnimation);
 
     super.initState();
@@ -50,14 +48,14 @@ class _SetWallpaperPageState extends State<SetWallpaperPage>
             iconColor: Colors.white,
             bubbleColor: Colors.white38,
             titleStyle:
-            GoogleFonts.beVietnamPro(fontSize: 16, color: Colors.white),
+                GoogleFonts.beVietnamPro(fontSize: 16, color: Colors.white),
             onPress: () async {
               _animationController.reverse();
-              // setwallpaper();
-              int location = WallpaperManager.HOME_SCREEN;
-              var file = await DefaultCacheManager().getFileStream(argument);
-              bool result = await WallpaperManager.setWallpaperFromFile(
-                  file.single.toString(), location);
+              setwallpaper();
+              // int location = WallpaperManager.HOME_SCREEN;
+              // var file = await DefaultCacheManager().getFileStream(argument);
+              // bool result = await WallpaperManager.setWallpaperFromFile(
+              //     file.single.toString(), location);
             },
             icon: Icons.wallpaper,
           ),
@@ -66,7 +64,7 @@ class _SetWallpaperPageState extends State<SetWallpaperPage>
             iconColor: Colors.white,
             bubbleColor: Colors.white38,
             titleStyle:
-            GoogleFonts.beVietnamPro(fontSize: 16, color: Colors.white),
+                GoogleFonts.beVietnamPro(fontSize: 16, color: Colors.white),
             onPress: () {
               _animationController.reverse();
             },
@@ -74,8 +72,7 @@ class _SetWallpaperPageState extends State<SetWallpaperPage>
           ),
         ],
         animation: _animation,
-        onPress: () =>
-        _animationController.isCompleted
+        onPress: () => _animationController.isCompleted
             ? _animationController.reverse()
             : _animationController.forward(),
         iconColor: Colors.white,
@@ -87,7 +84,7 @@ class _SetWallpaperPageState extends State<SetWallpaperPage>
       body: Container(
         decoration: BoxDecoration(
           image:
-          DecorationImage(image: AssetImage(argument), fit: BoxFit.cover),
+              DecorationImage(image: AssetImage(argument), fit: BoxFit.cover),
         ),
       ),
     );
@@ -95,10 +92,11 @@ class _SetWallpaperPageState extends State<SetWallpaperPage>
 
   Future<void> setwallpaper() async {
     int location = WallpaperManager.HOME_SCREEN;
-    var file = await DefaultCacheManager().getSingleFile("https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8=");
+    var file = await DefaultCacheManager().getSingleFile(
+        "https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8=");
     String result =
-    (await WallpaperManager.setWallpaperFromFile(file.path, location))
-    as String;
+        (await WallpaperManager.setWallpaperFromFile(file.path, location))
+            as String;
   }
 
   Future<void> setwallpaper_forlock() async {
@@ -106,7 +104,7 @@ class _SetWallpaperPageState extends State<SetWallpaperPage>
     var file = await DefaultCacheManager().getSingleFile("$argument");
 
     String result =
-    (await WallpaperManager.setWallpaperFromFile(file.path, location))
-    as String;
+        (await WallpaperManager.setWallpaperFromFile(file.path, location))
+            as String;
   }
 }

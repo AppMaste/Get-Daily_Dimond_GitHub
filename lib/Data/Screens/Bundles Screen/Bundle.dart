@@ -8,18 +8,27 @@ class BundlePage extends StatelessWidget {
   BundlePage({super.key});
 
   List list = [
-    "Zombie Samurai",
-    "Arctic Blue",
-    "Galaxy Dino",
-    "Green Criminal",
-    "Bunny Warrior",
-    "Crazy Panda",
-    "Purple Shade",
-    "Iron Blade",
-    "Sakura Bundle",
-    "Joker",
-    "Electric Shock",
     "Breakdancer",
+    "Bunny Warrior",
+    "Green Criminal",
+    "Hip Hop",
+    "Kings Sward",
+    "Night Clown",
+    "Red Criminal",
+    "Sakura",
+    "Samurai",
+  ];
+
+  List image = [
+    "assets/Images/Bundles/Breakdancer_bundle.png",
+    "assets/Images/Bundles/Bunny_warrior_bundle.png",
+    "assets/Images/Bundles/Green_criminal.png",
+    "assets/Images/Bundles/Hip_hop_bundle.png",
+    "assets/Images/Bundles/Kings_sward_bundle.png",
+    "assets/Images/Bundles/Night_clown_bundle.png",
+    "assets/Images/Bundles/red_criminal_bundle.png",
+    "assets/Images/Bundles/sakuro_bundle.png",
+    "assets/Images/Bundles/samurai_bundle.png",
   ];
 
   @override
@@ -31,7 +40,7 @@ class BundlePage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: GridView.builder(
           itemCount: list.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisSpacing: 10.5,
             crossAxisSpacing: 8.5,
@@ -52,6 +61,13 @@ class BundlePage extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
+                        Center(
+                          child: Image.asset(
+                            image[index],
+                            scale: 2.5,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                         Container(
                           width: double.maxFinite,
                           height: ScreenSize.fSize_45(),

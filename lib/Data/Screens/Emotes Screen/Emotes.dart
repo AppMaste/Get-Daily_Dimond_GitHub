@@ -9,19 +9,81 @@ import '../../Widgets/Mediaqure.dart';
 class EmotesPage extends StatelessWidget {
   EmotesPage({super.key});
 
-  List list = [
-    "Applause",
+  List name = [
+    "Push-up",
+    "Flowers of love",
+    "Let's Go",
+    "Selfie",
+    "Lol",
+    "Provoke",
     "Baby Shark",
-    "Battle Dance",
-    "Crane Kick",
-    "Dab",
-    "Devils Move",
-    "Thumbs Up",
-    "High Five",
-    "Moon Flip",
-    "Mummy Dance",
-    "Party Dance",
+    "",
+    "Shake With Me",
+    "",
+    "",
+    "Threaten",
+    "",
+    "Chicken",
     "Hello",
+    "",
+    "",
+    "Mummy Dance",
+    "Battel Dance",
+    "Pro Football",
+    "Captain Booyah",
+    "Make it Rain",
+    "I'm Saitama",
+    "Tea Time",
+    "Doggie",
+    "FFWC Throne",
+    "Eat My Dust",
+    "",
+    "Top DJ",
+    "Pirate's Flag",
+    "FFWC Throne",
+    "Shake It up",
+    "I'm Rich",
+    "I Heart You",
+    "Obliteration",
+    "Dangerous Game",
+  ];
+  List image = [
+    "assets/Images/Emotes/2.png",
+    "assets/Images/Emotes/3.png",
+    "assets/Images/Emotes/6.png",
+    "assets/Images/Emotes/7.png",
+    "assets/Images/Emotes/8.png",
+    "assets/Images/Emotes/9.png",
+    "assets/Images/Emotes/10.png",
+    "assets/Images/Emotes/11.png",
+    "assets/Images/Emotes/12.png",
+    "assets/Images/Emotes/13.png",
+    "assets/Images/Emotes/14.png",
+    "assets/Images/Emotes/15.png",
+    "assets/Images/Emotes/16.png",
+    "assets/Images/Emotes/17.png",
+    "assets/Images/Emotes/1.png",
+    "assets/Images/Emotes/18.png",
+    "assets/Images/Emotes/19.png",
+    "assets/Images/Emotes/20.png",
+    "assets/Images/Emotes/21.png",
+    "assets/Images/Emotes/22.png",
+    "assets/Images/Emotes/23.png",
+    "assets/Images/Emotes/24.png",
+    "assets/Images/Emotes/25.png",
+    "assets/Images/Emotes/26.png",
+    "assets/Images/Emotes/27.png",
+    "assets/Images/Emotes/28.png",
+    "assets/Images/Emotes/29.png",
+    "assets/Images/Emotes/31.png",
+    "assets/Images/Emotes/32.png",
+    "assets/Images/Emotes/33.png",
+    "assets/Images/Emotes/34.png",
+    "assets/Images/Emotes/35.png",
+    "assets/Images/Emotes/36.png",
+    "assets/Images/Emotes/37.png",
+    "assets/Images/Emotes/38.png",
+    "assets/Images/Emotes/39.png",
   ];
 
   @override
@@ -32,7 +94,7 @@ class EmotesPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GridView.builder(
-          itemCount: list.length,
+          itemCount: image.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             mainAxisSpacing: 10.5,
@@ -41,7 +103,13 @@ class EmotesPage extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                Get.to(() => EmotesDetailPage(),arguments: list[index].toString());
+                Get.to(
+                  () => EmotesDetailPage(),
+                  arguments: [
+                    image[index],
+                    name[index],
+                  ],
+                );
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -54,6 +122,11 @@ class EmotesPage extends StatelessWidget {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
+                        Image.asset(
+                          image[index],
+                          scale: 2.2,
+                          color: Colors.white,
+                        ),
                         Container(
                           width: double.maxFinite,
                           height: ScreenSize.fSize_45(),
@@ -66,7 +139,7 @@ class EmotesPage extends StatelessWidget {
                                       Radius.circular(ScreenSize.fSize_13()))),
                           child: Center(
                               child: Text(
-                            list[index],
+                            name[index],
                             style: GoogleFonts.beVietnamPro(
                                 fontSize: ScreenSize.fSize_15(),
                                 fontWeight: FontWeight.w500),

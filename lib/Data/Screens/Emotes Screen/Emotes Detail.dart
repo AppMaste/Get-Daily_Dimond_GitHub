@@ -14,7 +14,7 @@ class EmotesDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: appBar(context, "$argument"),
+      appBar: appBar(context, "${argument[1]}"),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -30,15 +30,22 @@ class EmotesDetailPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(ScreenSize.fSize_20()),
                     gradient: LinearGradient(colors: MainColor),
                   ),
-                  child: const Center(
-                    child: Text("Image"),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(
+                        argument[0],
+                        scale: 1.8,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ),
               SizedBox(height: ScreenSize.fSize_30()),
               Center(
                 child: Text(
-                  argument.toString().toUpperCase(),
+                  argument[1].toString().toUpperCase(),
                   style: GoogleFonts.beVietnamPro(
                       fontWeight: FontWeight.w600,
                       fontSize: ScreenSize.fSize_20()),
@@ -46,16 +53,6 @@ class EmotesDetailPage extends StatelessWidget {
               ),
               SizedBox(height: ScreenSize.fSize_30()),
               claimContainerWidget(context, "Claim Now", () {}),
-              SizedBox(height: ScreenSize.fSize_30()),
-              Text(
-                "$argument Emote Details :",
-                style: GoogleFonts.beVietnamPro(),
-              ),
-              SizedBox(height: ScreenSize.fSize_30()),
-              Text(
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,",
-                style: GoogleFonts.beVietnamPro(),
-              ),
             ],
           ),
         ),

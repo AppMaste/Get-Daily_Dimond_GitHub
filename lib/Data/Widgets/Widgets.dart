@@ -207,7 +207,7 @@ HomeContainerWidget(BuildContext context, String icon, String title,
             SizedBox(width: ScreenSize.fSize_20()),
             Padding(
               padding: EdgeInsets.only(
-                  top: ScreenSize.fSize_15(), bottom: ScreenSize.fSize_15()),
+                  top: ScreenSize.fSize_10(), bottom: ScreenSize.fSize_10()),
               child: Image.asset(
                 icon,
                 scale: scale,
@@ -243,26 +243,64 @@ HomeContainerWidget(BuildContext context, String icon, String title,
 
 ///////////////////////////////////////// Get Free Diamond Screen //////////////////////////////////////////////////////
 petContainerWidget(BuildContext context, String title, String title2, var ontap,
-    String image, var scale) {
+    String image, var scale, var padding) {
   return GestureDetector(
     onTap: ontap,
     child: Container(
       width: ScreenSize.horizontalBlockSize! * 45,
+      height: ScreenSize.horizontalBlockSize! * 60,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(ScreenSize.fSize_20()),
           gradient: LinearGradient(colors: MainColor)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(height: ScreenSize.fSize_20()),
-          Image.asset(image, scale: scale),
+          Padding(
+            padding: padding,
+            child: Image.asset(image, scale: scale),
+          ),
           Text(
             title,
             style: GoogleFonts.beVietnamPro(
               fontSize: ScreenSize.fSize_20(),
             ),
           ),
-          SizedBox(height: ScreenSize.fSize_15()),
+          SizedBox(height: ScreenSize.fSize_10()),
+          Text(
+            title2,
+            style: GoogleFonts.beVietnamPro(),
+          ),
+          SizedBox(height: ScreenSize.fSize_10()),
+        ],
+      ),
+    ),
+  );
+}
+
+petImageContainerWidget(BuildContext context, String title, String title2,
+    var ontap, String image, var scale, var padding, var color) {
+  return GestureDetector(
+    onTap: ontap,
+    child: Container(
+      width: ScreenSize.horizontalBlockSize! * 45,
+      height: ScreenSize.horizontalBlockSize! * 60,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(ScreenSize.fSize_20()),
+          gradient: LinearGradient(colors: MainColor)),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: padding,
+            child: Image.asset(image, scale: scale, color: color),
+          ),
+          Text(
+            title,
+            style: GoogleFonts.beVietnamPro(
+              fontSize: ScreenSize.fSize_20(),
+            ),
+          ),
+          SizedBox(height: ScreenSize.fSize_10()),
           Text(
             title2,
             style: GoogleFonts.beVietnamPro(),
@@ -305,14 +343,9 @@ getDiamondWidget(BuildContext context, String icon, String title,
                 )
               ],
             ),
-            SizedBox(width: ScreenSize.fSize_17()),
-            Padding(
-              padding: EdgeInsets.only(
-                  top: ScreenSize.fSize_15(), bottom: ScreenSize.fSize_15()),
-              child: Image.asset(
-                icon,
-                scale: scale,
-              ),
+            Image.asset(
+              icon,
+              scale: scale,
             ),
           ],
         ),
@@ -340,20 +373,6 @@ ContainerWidget2(BuildContext context, String title, var ontap) {
                       BorderRadius.all(Radius.circular(ScreenSize.fSize_15())),
                   border: Border.all(color: const Color(0xFF1E151C)),
                   gradient: LinearGradient(colors: MainColor)
-                  /* boxShadow: const [
-                  BoxShadow(
-                      color: Color(0xFF36093F),
-                      offset: Offset(0, -5),
-                      blurRadius: 5,
-                      blurStyle: BlurStyle.solid,
-                      spreadRadius: -2),
-                  BoxShadow(
-                      color: Color(0xFFE75A55),
-                      offset: Offset(2, 3),
-                      blurRadius: 5,
-                      blurStyle: BlurStyle.solid,
-                      spreadRadius: -2),
-                ],*/
                   ),
               child: Stack(
                 children: [
@@ -364,6 +383,77 @@ ContainerWidget2(BuildContext context, String title, var ontap) {
                     child: Row(
                       children: [
                         SizedBox(width: ScreenSize.fSize_25()),
+                        Container(
+                          width: ScreenSize.horizontalBlockSize! * 67,
+                          color: Colors.transparent,
+                          child: Text(
+                            title,
+                            overflow: TextOverflow.ellipsis,
+                            style: GoogleFonts.beVietnamPro(
+                                fontSize: ScreenSize.fSize_17()),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+              left: ScreenSize.horizontalBlockSize! * 77,
+              top: ScreenSize.fSize_20()),
+          child: Container(
+            width: ScreenSize.fSize_60(),
+            decoration: BoxDecoration(
+              color: const Color(0xFF1E151C),
+              borderRadius: BorderRadius.circular(ScreenSize.fSize_20()),
+              boxShadow: [
+                boxShadow,
+                boxShadow2,
+              ],
+            ),
+            child: Center(
+              child: Image.asset(
+                "assets/Icons/arrowright.png",
+                scale: 2.2,
+              ),
+            ),
+          ),
+        )
+      ],
+    ),
+  );
+}
+
+backContainerWidget2(BuildContext context, String title, var ontap) {
+  return GestureDetector(
+    onTap: ontap,
+    child: Stack(
+      children: [
+        Container(
+          width: double.maxFinite,
+          color: Colors.transparent,
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Container(
+              width: double.maxFinite,
+              decoration: BoxDecoration(
+                  // color: const Color(0xFF1E151C),
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(ScreenSize.fSize_15())),
+                  border: Border.all(color: const Color(0xFF1E151C)),
+                  gradient: LinearGradient(colors: MainColor)),
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: ScreenSize.fSize_20(),
+                        bottom: ScreenSize.fSize_20()),
+                    child: Row(
+                      children: [
                         Container(
                           width: ScreenSize.horizontalBlockSize! * 67,
                           color: Colors.transparent,

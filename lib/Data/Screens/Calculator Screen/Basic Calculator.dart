@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get_daily_dimond/Data/Widgets/Widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -63,6 +64,14 @@ class BasicCalculatorPage extends StatelessWidget {
               SizedBox(height: ScreenSize.fSize_30()),
               claimContainerWidget(context, "Calculate", () {
                 if (numberOfDiamondController.value.text.isEmpty) {
+                  Fluttertoast.showToast(
+                      msg: "Please enter a Number of Diamond",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.CENTER,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.white,
+                      textColor: Colors.black,
+                      fontSize: 16.0);
                 } else {
                   load.value = true;
                 }
