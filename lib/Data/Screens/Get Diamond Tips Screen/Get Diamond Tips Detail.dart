@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_daily_dimond/Data/Controller/AD%20Controller.dart';
 import 'package:get_daily_dimond/Data/Widgets/Mediaqure.dart';
 import 'package:get_daily_dimond/Data/Widgets/Widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -70,61 +71,66 @@ class _GetDiamondTipsDetailPageState extends State<GetDiamondTipsDetailPage> {
         backgroundColor: Colors.black,
         appBar:
             appBar(context, "${count.value == 0 ? argument[0] : data.value}"),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(height: ScreenSize.fSize_20()),
-              const Center(child: Text("AD")),
-              SizedBox(height: ScreenSize.fSize_20()),
-              Padding(
-                padding: EdgeInsets.all(8),
-                child: mainContainerWidget(
-                  context,
+        body: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: ScreenSize.fSize_20()),
+                  const Center(child: Text("AD")),
+                  SizedBox(height: ScreenSize.fSize_20()),
                   Padding(
-                    padding: EdgeInsets.all(ScreenSize.fSize_15()),
-                    child: Text(
-                      count.value == 0 ? argument[1] : detail.value,
-                      style: GoogleFonts.beVietnamPro(
-                          fontSize: ScreenSize.fSize_16(),
-                          fontWeight: FontWeight.w400),
+                    padding: EdgeInsets.all(8),
+                    child: mainContainerWidget(
+                      context,
+                      Padding(
+                        padding: EdgeInsets.all(ScreenSize.fSize_15()),
+                        child: Text(
+                          count.value == 0 ? argument[1] : detail.value,
+                          style: GoogleFonts.beVietnamPro(
+                              fontSize: ScreenSize.fSize_16(),
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  SizedBox(height: ScreenSize.fSize_30()),
+                  list.value.isNotEmpty
+                      ? Padding(
+                          padding: EdgeInsets.only(bottom: ScreenSize.fSize_60()),
+                          child: ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: list.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding:
+                                    EdgeInsets.only(top: ScreenSize.fSize_20()),
+                                child: ContainerWidget2(context, list[index], () {
+                                  removeValue();
+                                  count.value = 1;
+                                  data.value = list.value[index];
+                                  detail.value = detailll.value[index];
+                                  list.remove(data.value);
+                                  detailll.remove(detail.value);
+                                }),
+                              );
+                            },
+                          ),
+                        )
+                      : claimContainerWidget(context, "Back", () {
+                          Get.back();
+                        })
+                  // TextButton(
+                  //         onPressed: () {
+                  //           Get.back();
+                  //         },
+                  //         child: const Text("Back"))
+                ],
               ),
-              SizedBox(height: ScreenSize.fSize_30()),
-              list.value.isNotEmpty
-                  ? Padding(
-                      padding: EdgeInsets.only(bottom: ScreenSize.fSize_60()),
-                      child: ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: list.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding:
-                                EdgeInsets.only(top: ScreenSize.fSize_20()),
-                            child: ContainerWidget2(context, list[index], () {
-                              removeValue();
-                              count.value = 1;
-                              data.value = list.value[index];
-                              detail.value = detailll.value[index];
-                              list.remove(data.value);
-                              detailll.remove(detail.value);
-                            }),
-                          );
-                        },
-                      ),
-                    )
-                  : claimContainerWidget(context, "Back", () {
-                      Get.back();
-                    })
-              // TextButton(
-              //         onPressed: () {
-              //           Get.back();
-              //         },
-              //         child: const Text("Back"))
-            ],
-          ),
+            ),
+            banner.getBN("/GetDiamondTipsDetailPage")
+          ],
         ),
       ),
     );

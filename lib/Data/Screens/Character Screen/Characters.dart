@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_daily_dimond/Data/Controller/AD%20Controller.dart';
+import 'package:get_daily_dimond/Data/Controller/button%20Controller.dart';
 import 'package:get_daily_dimond/Data/Screens/Character%20Screen/Character%20Details.dart';
 import 'package:get_daily_dimond/Data/Widgets/Mediaqure.dart';
 import 'package:get_daily_dimond/Data/Widgets/Widgets.dart';
@@ -66,134 +68,148 @@ class CharacterPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: appBar(context, "Characters"),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView.builder(
-          itemCount: list.length,
-          itemBuilder: (context, index) {
-            final detail =
-                list2[index].toString().split("\u0009\u0009\u0009")[1];
-            // print(
+      body: Stack(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(bottom: ScreenSize.fSize_60()),
+            child: ListView.builder(
+              itemCount: list.length,
+              itemBuilder: (context, index) {
+                final detail =
+                    list2[index].toString().split("\u0009\u0009\u0009")[1];
+                // print(
                 // "detailllll ${list2[index].toString().split("\u0009\u0009\u0009")[1]}");
-            return index.isEven
-                ? Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Get.to(
-                          () => CharacterDetailPage(),
-                          arguments: [
-                            list[index],
-                            image[index],
-                            list2[index]
-                          ],
-                        );
-                      },
-                      child: Container(
-                        // height: ScreenSize.fSize_60(),
-                        decoration: BoxDecoration(
-                            // color: Colors.red,
-                            gradient: LinearGradient(colors: MainColor),
-                            borderRadius:
-                                BorderRadius.circular(ScreenSize.fSize_15())),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(width: ScreenSize.fSize_10()),
-                            Image.asset(
-                              image[index],
-                              scale: 2.2,
-                              // style: GoogleFonts.beVietnamPro(),
-                            ),
-                            SizedBox(width: ScreenSize.fSize_10()),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                return index.isEven
+                    ? Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            tapController.buttonWidget(
+                              context,
+                              "/CharacterDetailPage",
+                              [
+                                list[index],
+                                image[index],
+                                list2[index]
+                              ],
+                            );
+                            /* Get.to(
+                              () => CharacterDetailPage(),
+                              arguments: [
+                                list[index],
+                                image[index],
+                                list2[index]
+                              ],
+                            );*/
+                          },
+                          child: Container(
+                            // height: ScreenSize.fSize_60(),
+                            decoration: BoxDecoration(
+                                // color: Colors.red,
+                                gradient: LinearGradient(colors: MainColor),
+                                borderRadius:
+                                    BorderRadius.circular(ScreenSize.fSize_15())),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                SizedBox(height: ScreenSize.fSize_6()),
-                                Text(
-                                  list[index],
-                                  style: GoogleFonts.beVietnamPro(
-                                      fontSize: ScreenSize.fSize_17()),
+                                SizedBox(width: ScreenSize.fSize_10()),
+                                Image.asset(
+                                  image[index],
+                                  scale: 2.2,
+                                  // style: GoogleFonts.beVietnamPro(),
                                 ),
-                                SizedBox(height: ScreenSize.fSize_6()),
-                                Container(
-                                  width: ScreenSize.horizontalBlockSize! * 60,
-                                  height: ScreenSize.horizontalBlockSize! * 10,
-                                  color: Colors.transparent,
-                                  child: Text(
-                                    detail,
-                                    overflow: TextOverflow.fade,
-                                    style: GoogleFonts.beVietnamPro(
-                                        fontSize: ScreenSize.horizontalBlockSize! * 2.5),
-                                  ),
+                                SizedBox(width: ScreenSize.fSize_10()),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(height: ScreenSize.fSize_6()),
+                                    Text(
+                                      list[index],
+                                      style: GoogleFonts.beVietnamPro(
+                                          fontSize: ScreenSize.fSize_17()),
+                                    ),
+                                    SizedBox(height: ScreenSize.fSize_6()),
+                                    Container(
+                                      width: ScreenSize.horizontalBlockSize! * 60,
+                                      height: ScreenSize.horizontalBlockSize! * 10,
+                                      color: Colors.transparent,
+                                      child: Text(
+                                        detail,
+                                        overflow: TextOverflow.fade,
+                                        style: GoogleFonts.beVietnamPro(
+                                            fontSize:
+                                                ScreenSize.horizontalBlockSize! *
+                                                    2.5),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  )
-                : Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Get.to(
-                          () => CharacterDetailPage(),
-                          arguments: [
-                            list[index],
-                            image[index],
-                            list2[index]
-                          ],
-                        );
-                      },
-                      child: Container(
-                        // height: ScreenSize.fSize_60(),
-                        decoration: BoxDecoration(
-                            // color: Colors.red,
-                            gradient: LinearGradient(colors: MainColor),
-                            borderRadius:
-                                BorderRadius.circular(ScreenSize.fSize_15())),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(width: ScreenSize.fSize_10()),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.to(
+                              () => CharacterDetailPage(),
+                              arguments: [list[index], image[index], list2[index]],
+                            );
+                          },
+                          child: Container(
+                            // height: ScreenSize.fSize_60(),
+                            decoration: BoxDecoration(
+                                // color: Colors.red,
+                                gradient: LinearGradient(colors: MainColor),
+                                borderRadius:
+                                    BorderRadius.circular(ScreenSize.fSize_15())),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                SizedBox(height: ScreenSize.fSize_6()),
-                                Text(
-                                  list[index],
-                                  style: GoogleFonts.beVietnamPro(
-                                      fontSize: ScreenSize.fSize_17()),
+                                SizedBox(width: ScreenSize.fSize_10()),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(height: ScreenSize.fSize_6()),
+                                    Text(
+                                      list[index],
+                                      style: GoogleFonts.beVietnamPro(
+                                          fontSize: ScreenSize.fSize_17()),
+                                    ),
+                                    SizedBox(height: ScreenSize.fSize_6()),
+                                    Container(
+                                      width: ScreenSize.horizontalBlockSize! * 60,
+                                      height: ScreenSize.horizontalBlockSize! * 10,
+                                      color: Colors.transparent,
+                                      child: Text(
+                                        detail,
+                                        overflow: TextOverflow.fade,
+                                        style: GoogleFonts.beVietnamPro(
+                                            fontSize:
+                                                ScreenSize.horizontalBlockSize! *
+                                                    2.5),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(height: ScreenSize.fSize_6()),
-                                Container(
-                                  width: ScreenSize.horizontalBlockSize! * 60,
-                                  height: ScreenSize.horizontalBlockSize! * 10,
-                                  color: Colors.transparent,
-                                  child: Text(
-                                    detail,
-                                    overflow: TextOverflow.fade,
-                                    style: GoogleFonts.beVietnamPro(
-                                        fontSize: ScreenSize.horizontalBlockSize! * 2.5),
-                                  ),
+                                Image.asset(
+                                  image[index],
+                                  scale: 2.1,
+                                  // style: GoogleFonts.beVietnamPro(),
                                 ),
+                                SizedBox(width: ScreenSize.fSize_10())
                               ],
                             ),
-                            Image.asset(
-                              image[index],
-                              scale: 2.1,
-                              // style: GoogleFonts.beVietnamPro(),
-                            ),
-                            SizedBox(width: ScreenSize.fSize_10())
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  );
-          },
-        ),
+                      );
+              },
+            ),
+          ),
+          banner.getBN("/CharacterPage")
+        ],
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_daily_dimond/Data/Controller/button%20Controller.dart';
 import 'package:get_daily_dimond/Data/Screens/Get%20Started%20Screen/Home.dart';
 import 'package:get_daily_dimond/Data/Screens/Get%20Started%20Screen/Privacy%20Policy.dart';
 import 'package:get_daily_dimond/Data/Widgets/Mediaqure.dart';
@@ -28,7 +29,8 @@ class GetStartedPage extends StatelessWidget {
               SizedBox(height: ScreenSize.fSize_20()),
               GestureDetector(
                 onTap: () {
-                  Get.offAll(() => const HomePage());
+                  tapController.buttonWidget(context, "/HomePage", "");
+                  // Get.offAll(() => const HomePage());
                 },
                 child: mainContainerWidget(
                     context,
@@ -88,7 +90,8 @@ class GetStartedPage extends StatelessWidget {
               SizedBox(height: ScreenSize.fSize_20()),
               ContainerWidget(
                   context, "Privacy Policy", "assets/Icons/privacy.png", () {
-                    Get.to(() => PrivacyWebView());
+                // Get.to(() => PrivacyWebView());
+                tapController.buttonWidget(context, "/PrivacyWebView", '');
               }),
             ],
           ),

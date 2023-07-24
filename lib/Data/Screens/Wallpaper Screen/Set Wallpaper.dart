@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, non_constant_identifier_names, await_only_futures
 
+import 'package:async_wallpaper/async_wallpaper.dart';
 import 'package:floating_action_bubble/floating_action_bubble.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_wallpaper_manager/flutter_wallpaper_manager.dart';
 import 'package:get/get.dart';
@@ -18,6 +20,7 @@ class SetWallpaperPage extends StatefulWidget {
 class _SetWallpaperPageState extends State<SetWallpaperPage>
     with SingleTickerProviderStateMixin {
   var argument = Get.arguments;
+  String wallpaperFileHome = 'Unknown';
 
   var text;
 
@@ -51,11 +54,7 @@ class _SetWallpaperPageState extends State<SetWallpaperPage>
                 GoogleFonts.beVietnamPro(fontSize: 16, color: Colors.white),
             onPress: () async {
               _animationController.reverse();
-              setwallpaper();
-              // int location = WallpaperManager.HOME_SCREEN;
-              // var file = await DefaultCacheManager().getFileStream(argument);
-              // bool result = await WallpaperManager.setWallpaperFromFile(
-              //     file.single.toString(), location);
+              setWallpaperFromFileHome(argument[1]);
             },
             icon: Icons.wallpaper,
           ),
@@ -67,6 +66,7 @@ class _SetWallpaperPageState extends State<SetWallpaperPage>
                 GoogleFonts.beVietnamPro(fontSize: 16, color: Colors.white),
             onPress: () {
               _animationController.reverse();
+              setWallpaperFromFileLock(argument[1]);
             },
             icon: Icons.wallpaper,
           ),
@@ -83,28 +83,64 @@ class _SetWallpaperPageState extends State<SetWallpaperPage>
       appBar: appBar(context, "Set Wallpaper"),
       body: Container(
         decoration: BoxDecoration(
-          image:
-              DecorationImage(image: AssetImage(argument), fit: BoxFit.cover),
+          image: DecorationImage(
+              image: AssetImage(argument[0]), fit: BoxFit.cover),
         ),
       ),
     );
   }
 
-  Future<void> setwallpaper() async {
-    int location = WallpaperManager.HOME_SCREEN;
-    var file = await DefaultCacheManager().getSingleFile(
-        "https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8=");
-    String result =
-        (await WallpaperManager.setWallpaperFromFile(file.path, location))
-            as String;
+  Future<void> setWallpaperFromFileHome(image) async {
+    setState(() {
+      wallpaperFileHome = 'Loading';
+    });
+    String result;
+    var file = await DefaultCacheManager().getSingleFile(image);
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      result = (await AsyncWallpaper.setWallpaperFromFile(
+        wallpaperLocation: AsyncWallpaper.HOME_SCREEN,
+        filePath: file.path,
+      ))
+          .toString();
+    } on PlatformException {
+      result = 'Failed to get wallpaper.';
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      wallpaperFileHome = result;
+    });
   }
 
-  Future<void> setwallpaper_forlock() async {
-    int location = WallpaperManager.LOCK_SCREEN;
-    var file = await DefaultCacheManager().getSingleFile("$argument");
+  Future<void> setWallpaperFromFileLock(image) async {
+    setState(() {
+      wallpaperFileHome = 'Loading';
+    });
+    String result;
+    var file = await DefaultCacheManager().getSingleFile(image);
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      result = (await AsyncWallpaper.setWallpaperFromFile(
+        wallpaperLocation: AsyncWallpaper.LOCK_SCREEN,
+        filePath: file.path,
+      ))
+          .toString();
+    } on PlatformException {
+      result = 'Failed to get wallpaper.';
+    }
 
-    String result =
-        (await WallpaperManager.setWallpaperFromFile(file.path, location))
-            as String;
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      wallpaperFileHome = result;
+    });
   }
 }

@@ -55,7 +55,7 @@ class AppController extends GetxController with WidgetsBindingObserver {
     if (getfirebase.value.isNotEmpty) {
       appopenAd();
       Future.delayed(const Duration(seconds: 3), () {
-        Get.offAll(() => const GetStartedPage());
+        Get.offAllNamed("/GetStartedPage");
       });
     } else {
       getfirebase.value =

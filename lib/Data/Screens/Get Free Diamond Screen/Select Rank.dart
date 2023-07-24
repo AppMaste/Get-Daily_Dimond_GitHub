@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_daily_dimond/Data/Controller/AD%20Controller.dart';
+import 'package:get_daily_dimond/Data/Controller/button%20Controller.dart';
 import 'package:get_daily_dimond/Data/Screens/Get%20Free%20Diamond%20Screen/Select%20Game%20Mode.dart';
 import 'package:get_daily_dimond/Data/Widgets/Widgets.dart';
 
@@ -26,51 +28,60 @@ class SelectYourRankPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: appBar(context, "Select Your Rank"),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: list.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10.5,
-                    mainAxisSpacing: 8.5),
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Get.to(() => SelectGameModePage(),arguments: argument);
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: list.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10.5,
+                            mainAxisSpacing: 8.5),
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          tapController.buttonWidget(
+                              context, "/SelectGameModePage", '');
+                          // Get.to(() => SelectGameModePage(),arguments: argument);
+                        },
+                        child: Container(
+                          height: ScreenSize.fSize_50(),
+                          width: ScreenSize.horizontalBlockSize! * 45,
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(ScreenSize.fSize_15()),
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: MainColor,
+                            ),
+                          ),
+                          child: Center(
+                            child: Image.asset(
+                              list[index],
+                              scale: 1.2,
+                            ),
+                          ),
+                        ),
+                      );
                     },
-                    child: Container(
-                      height: ScreenSize.fSize_50(),
-                      width: ScreenSize.horizontalBlockSize! * 45,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(ScreenSize.fSize_15()),
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: MainColor,
-                        ),
-                      ),
-                      child: Center(
-                        child: Image.asset(
-                          list[index],
-                          scale: 1.2,
-                        ),
-                      ),
-                    ),
-                  );
-                },
+                  ),
+                  SizedBox(height: ScreenSize.fSize_60()),
+                ],
               ),
-              SizedBox(height: ScreenSize.fSize_60()),
-            ],
+            ),
           ),
-        ),
+          banner.getBN("/SelectYourRankPage")
+        ],
       ),
     );
   }

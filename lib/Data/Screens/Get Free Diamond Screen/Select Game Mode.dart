@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_daily_dimond/Data/Controller/AD%20Controller.dart';
+import 'package:get_daily_dimond/Data/Controller/button%20Controller.dart';
 import 'package:get_daily_dimond/Data/Screens/Get%20Free%20Diamond%20Screen/Claim%20Your%20Pet.dart';
 import 'package:get_daily_dimond/Data/Widgets/Widgets.dart';
 
@@ -15,32 +17,40 @@ class SelectGameModePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: appBar(context, "Select Game Mode"),
-      body: Column(
+      body: Stack(
         children: [
-          SizedBox(height: ScreenSize.fSize_20()),
-          Padding(
-            padding: EdgeInsets.only(
-                left: ScreenSize.fSize_10(), right: ScreenSize.fSize_10()),
-            child: ContainerWidget2(context, "BR Rank", () {
-              Get.to(() => ClaimYourPetPage(), arguments: argument);
-            }),
+          Column(
+            children: [
+              SizedBox(height: ScreenSize.fSize_20()),
+              Padding(
+                padding: EdgeInsets.only(
+                    left: ScreenSize.fSize_10(), right: ScreenSize.fSize_10()),
+                child: ContainerWidget2(context, "BR Rank", () {
+                  tapController.buttonWidget(context, "/ClaimYourPetPage", argument);
+                  // Get.to(() => ClaimYourPetPage(), arguments: argument);
+                }),
+              ),
+              SizedBox(height: ScreenSize.fSize_20()),
+              Padding(
+                padding: EdgeInsets.only(
+                    left: ScreenSize.fSize_10(), right: ScreenSize.fSize_10()),
+                child: ContainerWidget2(context, "CS Rank", () {
+                  tapController.buttonWidget(context, "/ClaimYourPetPage", argument);
+                  // Get.to(() => ClaimYourPetPage(), arguments: argument);
+                }),
+              ),
+              SizedBox(height: ScreenSize.fSize_20()),
+              Padding(
+                padding: EdgeInsets.only(
+                    left: ScreenSize.fSize_10(), right: ScreenSize.fSize_10()),
+                child: ContainerWidget2(context, "Casual Modes", () {
+                  tapController.buttonWidget(context, "/ClaimYourPetPage", argument);
+                  // Get.to(() => ClaimYourPetPage(), arguments: argument);
+                }),
+              ),
+            ],
           ),
-          SizedBox(height: ScreenSize.fSize_20()),
-          Padding(
-            padding: EdgeInsets.only(
-                left: ScreenSize.fSize_10(), right: ScreenSize.fSize_10()),
-            child: ContainerWidget2(context, "CS Rank", () {
-              Get.to(() => ClaimYourPetPage(), arguments: argument);
-            }),
-          ),
-          SizedBox(height: ScreenSize.fSize_20()),
-          Padding(
-            padding: EdgeInsets.only(
-                left: ScreenSize.fSize_10(), right: ScreenSize.fSize_10()),
-            child: ContainerWidget2(context, "Casual Modes", () {
-              Get.to(() => ClaimYourPetPage(), arguments: argument);
-            }),
-          ),
+          banner.getBN("/SelectGameModePage")
         ],
       ),
     );

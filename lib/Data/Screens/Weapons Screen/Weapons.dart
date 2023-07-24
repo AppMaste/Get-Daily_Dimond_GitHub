@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_daily_dimond/Data/Controller/AD%20Controller.dart';
+import 'package:get_daily_dimond/Data/Controller/button%20Controller.dart';
 import 'package:get_daily_dimond/Data/Widgets/Mediaqure.dart';
 import 'package:get_daily_dimond/Data/Widgets/Widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -105,144 +107,130 @@ class WeaponsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: appBar(context, "Weapons"),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView.builder(
-          itemCount: list.length,
-          itemBuilder: (context, index) {
-            return index.isOdd
-                ? Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Get.to(
-                          () => WeaponsDetailPage(),
-                          arguments: [
-                            list[index],
-                            image[index],
-                            detail[index],
-                          ],
-                        );
-                      },
-                      child: Container(
-                        height: ScreenSize.horizontalBlockSize! * 30,
-                        decoration: BoxDecoration(
-                            // color: Colors.red,
-                            gradient: LinearGradient(colors: MainColor),
-                            borderRadius:
-                                BorderRadius.circular(ScreenSize.fSize_15())),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(width: ScreenSize.fSize_10()),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.asset(
+      body: Stack(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(
+                bottom: ScreenSize.fSize_60(),
+                right: ScreenSize.fSize_8(),
+                left: ScreenSize.fSize_8()),
+            child: ListView.builder(
+              itemCount: list.length,
+              itemBuilder: (context, index) {
+                return index.isOdd
+                    ? Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            tapController.buttonWidget(
+                              context,
+                              "/WeaponsDetailPage",
+                              [
+                                list[index],
                                 image[index],
-                                scale: 2.0,
-                                // style: GoogleFonts.beVietnamPro(),
-                              ),
-                            ),
-                            SizedBox(width: ScreenSize.fSize_50()),
-                            SizedBox(height: ScreenSize.fSize_6()),
-                            Text(
-                              list[index],
-                              style: GoogleFonts.beVietnamPro(
-                                  fontSize: ScreenSize.fSize_17()),
-                            ),
-                            SizedBox(height: ScreenSize.fSize_6()),
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
-                : Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Get.to(
-                          () => WeaponsDetailPage(),
-                          arguments: [
-                            list[index],
-                            image[index],
-                            detail[index],
-                          ],
-                        );
-                      },
-                      child: Container(
-                        height: ScreenSize.horizontalBlockSize! * 30,
-                        decoration: BoxDecoration(
-                            // color: Colors.red,
-                            gradient: LinearGradient(colors: MainColor),
-                            borderRadius:
-                                BorderRadius.circular(ScreenSize.fSize_15())),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SizedBox(width: ScreenSize.fSize_10()),
-                            Text(
-                              list[index],
-                              style: GoogleFonts.beVietnamPro(
-                                  fontSize: ScreenSize.fSize_17()),
-                            ),
-                            SizedBox(height: ScreenSize.fSize_6()),
-                            SizedBox(width: ScreenSize.fSize_30()),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Image.asset(
+                                detail[index],
+                              ],
+                            );
+                            /*Get.to(
+                              () => WeaponsDetailPage(),
+                              arguments: [
+                                list[index],
                                 image[index],
-                                scale: 1.5,
-                                // style: GoogleFonts.beVietnamPro(),
-                              ),
+                                detail[index],
+                              ],
+                            );*/
+                          },
+                          child: Container(
+                            height: ScreenSize.horizontalBlockSize! * 30,
+                            decoration: BoxDecoration(
+                                // color: Colors.red,
+                                gradient: LinearGradient(colors: MainColor),
+                                borderRadius: BorderRadius.circular(
+                                    ScreenSize.fSize_15())),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(width: ScreenSize.fSize_10()),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.asset(
+                                    image[index],
+                                    scale: 2.0,
+                                    // style: GoogleFonts.beVietnamPro(),
+                                  ),
+                                ),
+                                SizedBox(width: ScreenSize.fSize_50()),
+                                SizedBox(height: ScreenSize.fSize_6()),
+                                Text(
+                                  list[index],
+                                  style: GoogleFonts.beVietnamPro(
+                                      fontSize: ScreenSize.fSize_17()),
+                                ),
+                                SizedBox(height: ScreenSize.fSize_6()),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  );
-          },
-        ),
-      ),
-      /*body: ListView.builder(
-        itemCount: list.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsets.only(top: ScreenSize.fSize_20()),
-            child: GestureDetector(
-              onTap: () {
-                Get.to(
-                  () => WeaponsDetailPage(),
-                  arguments: [list[index], image[index]],
-                );
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            tapController.buttonWidget(
+                              context,
+                              "/",
+                              [
+                                list[index],
+                                image[index],
+                                detail[index],
+                              ],
+                            );
+                            /* Get.to(
+                              () => WeaponsDetailPage(),
+                              arguments: [
+                                list[index],
+                                image[index],
+                                detail[index],
+                              ],
+                            );*/
+                          },
+                          child: Container(
+                            height: ScreenSize.horizontalBlockSize! * 30,
+                            decoration: BoxDecoration(
+                                // color: Colors.red,
+                                gradient: LinearGradient(colors: MainColor),
+                                borderRadius: BorderRadius.circular(
+                                    ScreenSize.fSize_15())),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(width: ScreenSize.fSize_10()),
+                                Text(
+                                  list[index],
+                                  style: GoogleFonts.beVietnamPro(
+                                      fontSize: ScreenSize.fSize_17()),
+                                ),
+                                SizedBox(height: ScreenSize.fSize_6()),
+                                SizedBox(width: ScreenSize.fSize_30()),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.asset(
+                                    image[index],
+                                    scale: 1.5,
+                                    // style: GoogleFonts.beVietnamPro(),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
               },
-              child: mainContainerWidget(
-                context,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.asset(
-                        image[index],
-                        scale: 1.7,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(ScreenSize.fSize_50()),
-                      child: Text(
-                        list[index],
-                        style: GoogleFonts.beVietnamPro(
-                            fontSize: ScreenSize.fSize_20(),
-                            fontWeight: FontWeight.w600),
-                      ),
-                    )
-                  ],
-                ),
-              ),
             ),
-          );
-        },
-      ),*/
+          ),
+          banner.getBN("/WeaponsPage")
+        ],
+      ),
     );
   }
 }
