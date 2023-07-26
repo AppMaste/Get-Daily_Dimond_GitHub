@@ -83,14 +83,14 @@ class NativeAdFactoryMedium implements GoogleMobileAdsPlugin.NativeAdFactory {
             nativeAdView.getAdvertiserView().setVisibility(View.VISIBLE);
         }
 //   ratingbar
-        nativeAdView.setStarRatingView(nativeAdView.findViewById(R.id.native_ad_rating));
-        if(nativeAd.getStarRating()==null){
-            nativeAdView.getStarRatingView().setVisibility(View.INVISIBLE);
-        }else{
-            ((RatingBar)nativeAdView.getStarRatingView()).setRating(nativeAd.getStarRating().floatValue());
-            nativeAdView.getStarRatingView().setVisibility(View.VISIBLE);
-
-        }
+//        nativeAdView.setStarRatingView(nativeAdView.findViewById(R.id.native_ad_rating));
+//        if(nativeAd.getStarRating()==null){
+//            nativeAdView.getStarRatingView().setVisibility(View.INVISIBLE);
+//        }else{
+//            ((RatingBar)nativeAdView.getStarRatingView()).setRating(nativeAd.getStarRating().floatValue());
+//            nativeAdView.getStarRatingView().setVisibility(View.VISIBLE);
+//
+//        }
 
 
 

@@ -6,6 +6,7 @@ import 'package:get_daily_dimond/Data/Screens/Character%20Screen/Character%20Det
 import 'package:get_daily_dimond/Data/Widgets/Mediaqure.dart';
 import 'package:get_daily_dimond/Data/Widgets/Widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
 class CharacterPage extends StatelessWidget {
   CharacterPage({super.key});
@@ -87,11 +88,7 @@ class CharacterPage extends StatelessWidget {
                             tapController.buttonWidget(
                               context,
                               "/CharacterDetailPage",
-                              [
-                                list[index],
-                                image[index],
-                                list2[index]
-                              ],
+                              [list[index], image[index], list2[index]],
                             );
                             /* Get.to(
                               () => CharacterDetailPage(),
@@ -105,10 +102,21 @@ class CharacterPage extends StatelessWidget {
                           child: Container(
                             // height: ScreenSize.fSize_60(),
                             decoration: BoxDecoration(
-                                // color: Colors.red,
-                                gradient: LinearGradient(colors: MainColor),
-                                borderRadius:
-                                    BorderRadius.circular(ScreenSize.fSize_15())),
+                              // color: Colors.red,
+                              gradient: LinearGradient(colors: MainColor),
+                              borderRadius:
+                                  BorderRadius.circular(ScreenSize.fSize_15()),
+                              border: const GradientBoxBorder(
+                                gradient: LinearGradient(
+                                    colors: [
+                                      Color(0xFF36093F),
+                                      Color(0xFFE75A55),
+                                    ],
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter),
+                                width: 1.5,
+                              ),
+                            ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -130,16 +138,18 @@ class CharacterPage extends StatelessWidget {
                                     ),
                                     SizedBox(height: ScreenSize.fSize_6()),
                                     Container(
-                                      width: ScreenSize.horizontalBlockSize! * 60,
-                                      height: ScreenSize.horizontalBlockSize! * 10,
+                                      width:
+                                          ScreenSize.horizontalBlockSize! * 60,
+                                      height:
+                                          ScreenSize.horizontalBlockSize! * 10,
                                       color: Colors.transparent,
                                       child: Text(
                                         detail,
                                         overflow: TextOverflow.fade,
                                         style: GoogleFonts.beVietnamPro(
-                                            fontSize:
-                                                ScreenSize.horizontalBlockSize! *
-                                                    2.5),
+                                            fontSize: ScreenSize
+                                                    .horizontalBlockSize! *
+                                                2.5),
                                       ),
                                     ),
                                   ],
@@ -155,16 +165,28 @@ class CharacterPage extends StatelessWidget {
                           onTap: () {
                             Get.to(
                               () => CharacterDetailPage(),
-                              arguments: [list[index], image[index], list2[index]],
+                              arguments: [
+                                list[index],
+                                image[index],
+                                list2[index]
+                              ],
                             );
                           },
                           child: Container(
                             // height: ScreenSize.fSize_60(),
                             decoration: BoxDecoration(
-                                // color: Colors.red,
-                                gradient: LinearGradient(colors: MainColor),
-                                borderRadius:
-                                    BorderRadius.circular(ScreenSize.fSize_15())),
+                              // color: Colors.red,
+                              gradient: LinearGradient(colors: MainColor),
+                              borderRadius:
+                                  BorderRadius.circular(ScreenSize.fSize_15()),
+                              border: const GradientBoxBorder(
+                                gradient: LinearGradient(colors: [
+                                  Color(0xFF36093F),
+                                  Color(0xFFE75A55),
+                                ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                                width: 1.5,
+                              ),
+                            ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -180,16 +202,18 @@ class CharacterPage extends StatelessWidget {
                                     ),
                                     SizedBox(height: ScreenSize.fSize_6()),
                                     Container(
-                                      width: ScreenSize.horizontalBlockSize! * 60,
-                                      height: ScreenSize.horizontalBlockSize! * 10,
+                                      width:
+                                          ScreenSize.horizontalBlockSize! * 60,
+                                      height:
+                                          ScreenSize.horizontalBlockSize! * 10,
                                       color: Colors.transparent,
                                       child: Text(
                                         detail,
                                         overflow: TextOverflow.fade,
                                         style: GoogleFonts.beVietnamPro(
-                                            fontSize:
-                                                ScreenSize.horizontalBlockSize! *
-                                                    2.5),
+                                            fontSize: ScreenSize
+                                                    .horizontalBlockSize! *
+                                                2.5),
                                       ),
                                     ),
                                   ],

@@ -1,8 +1,11 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:cherry_toast/cherry_toast.dart';
+import 'package:cherry_toast/resources/arrays.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
 import 'Mediaqure.dart';
 
@@ -10,6 +13,31 @@ var MainColor = [
   const Color(0xFF1E151C),
   const Color(0xFF2D1D21),
 ];
+
+
+var toast =   CherryToast(
+    icon: Icons.alarm_add,
+    displayCloseButton: false,
+    displayIcon: false,
+    themeColor: Colors.transparent,
+    toastPosition: Position.bottom,
+    title: Text(
+      "After 24 Hours This Character Will Be Added in Your Collection",
+      style:
+      GoogleFonts.beVietnamPro(color: Colors.black),
+    ),
+    displayTitle: false,
+    description: Text(
+      "After 24 Hours This Character Will Be Added in Your Collection",
+      style: GoogleFonts.beVietnamPro(
+          color: Colors.black,
+          fontSize: ScreenSize.fSize_8()),
+    ),
+    toastDuration: const Duration(seconds: 5),
+    // toastPosition: POSITION.BOTTOM,
+    animationDuration:
+    const Duration(milliseconds: 1000),
+    autoDismiss: true);
 
 ///////////////////////////////////////// AppBar //////////////////////////////////////////////////////
 HomeAppBar(BuildContext context, String title) {
@@ -50,22 +78,16 @@ mainContainerWidget(BuildContext context, var child) {
   return Container(
     width: double.maxFinite,
     decoration: BoxDecoration(
-        gradient: LinearGradient(colors: MainColor),
-        borderRadius: BorderRadius.circular(ScreenSize.fSize_15()),
-        boxShadow: const [
-          BoxShadow(
-              color: Color(0xFF36093F),
-              offset: Offset(-4, -5),
-              blurRadius: 5,
-              blurStyle: BlurStyle.solid,
-              spreadRadius: -2),
-          BoxShadow(
-              color: Color(0xFFE75A55),
-              offset: Offset(2, 3),
-              blurRadius: 5,
-              blurStyle: BlurStyle.solid,
-              spreadRadius: -2),
-        ]),
+      gradient: LinearGradient(colors: MainColor),
+      borderRadius: BorderRadius.circular(ScreenSize.fSize_15()),
+      border: const GradientBoxBorder(
+        gradient: LinearGradient(colors: [
+          Color(0xFF36093F),
+          Color(0xFFE75A55),
+        ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+        width: 1.5,
+      ),
+    ),
     child: child,
   );
 }
@@ -111,21 +133,13 @@ ContainerWidget(BuildContext context, String title, String icon, var ontap) {
                 color: const Color(0xFF1E151C),
                 borderRadius:
                     BorderRadius.all(Radius.circular(ScreenSize.fSize_15())),
-                border: Border.all(color: const Color(0xFF1E151C)),
-                boxShadow: const [
-                  BoxShadow(
-                      color: Color(0xFF36093F),
-                      offset: Offset(0, -5),
-                      blurRadius: 5,
-                      blurStyle: BlurStyle.solid,
-                      spreadRadius: -2),
-                  BoxShadow(
-                      color: Color(0xFFE75A55),
-                      offset: Offset(2, 3),
-                      blurRadius: 5,
-                      blurStyle: BlurStyle.solid,
-                      spreadRadius: -2),
-                ],
+                border: const GradientBoxBorder(
+                  gradient: LinearGradient(colors: [
+                    Color(0xFF36093F),
+                    Color(0xFFE75A55),
+                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                  width: 1.5,
+                ),
               ),
               child: Stack(
                 children: [
@@ -163,10 +177,13 @@ ContainerWidget(BuildContext context, String title, String icon, var ontap) {
             decoration: BoxDecoration(
               color: const Color(0xFF1E151C),
               borderRadius: BorderRadius.circular(ScreenSize.fSize_20()),
-              boxShadow: [
-                boxShadow,
-                boxShadow2,
-              ],
+              border: const GradientBoxBorder(
+                gradient: LinearGradient(colors: [
+                  Color(0xFF36093F),
+                  Color(0xFFE75A55),
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                width: 1.5,
+              ),
             ),
             child: Center(
               child: Image.asset(
@@ -250,8 +267,16 @@ petContainerWidget(BuildContext context, String title, String title2, var ontap,
       width: ScreenSize.horizontalBlockSize! * 45,
       height: ScreenSize.horizontalBlockSize! * 60,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(ScreenSize.fSize_20()),
-          gradient: LinearGradient(colors: MainColor)),
+        borderRadius: BorderRadius.circular(ScreenSize.fSize_20()),
+        gradient: LinearGradient(colors: MainColor),
+        border: const GradientBoxBorder(
+          gradient: LinearGradient(colors: [
+            Color(0xFF36093F),
+            Color(0xFFE75A55),
+          ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+          width: 1.5,
+        ),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -285,8 +310,16 @@ petImageContainerWidget(BuildContext context, String title, String title2,
       width: ScreenSize.horizontalBlockSize! * 45,
       height: ScreenSize.horizontalBlockSize! * 60,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(ScreenSize.fSize_20()),
-          gradient: LinearGradient(colors: MainColor)),
+        borderRadius: BorderRadius.circular(ScreenSize.fSize_20()),
+        gradient: LinearGradient(colors: MainColor),
+        border: const GradientBoxBorder(
+          gradient: LinearGradient(colors: [
+            Color(0xFF36093F),
+            Color(0xFFE75A55),
+          ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+          width: 1.5,
+        ),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -320,7 +353,7 @@ getDiamondWidget(BuildContext context, String icon, String title,
         context,
         Row(
           children: [
-            SizedBox(width: ScreenSize.fSize_30()),
+            SizedBox(width: ScreenSize.fSize_15()),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -343,9 +376,12 @@ getDiamondWidget(BuildContext context, String icon, String title,
                 )
               ],
             ),
-            Image.asset(
-              icon,
-              scale: scale,
+            Padding(
+              padding:  EdgeInsets.only(top: ScreenSize.fSize_8()),
+              child: Image.asset(
+                icon,
+                scale: scale,
+              ),
             ),
           ],
         ),
@@ -368,12 +404,19 @@ ContainerWidget2(BuildContext context, String title, var ontap) {
             child: Container(
               width: double.maxFinite,
               decoration: BoxDecoration(
-                  // color: const Color(0xFF1E151C),
-                  borderRadius:
-                      BorderRadius.all(Radius.circular(ScreenSize.fSize_15())),
-                  border: Border.all(color: const Color(0xFF1E151C)),
-                  gradient: LinearGradient(colors: MainColor)
-                  ),
+                // color: const Color(0xFF1E151C),
+                borderRadius:
+                    BorderRadius.all(Radius.circular(ScreenSize.fSize_15())),
+                // border: Border.all(color: const Color(0xFF1E151C)),
+                gradient: LinearGradient(colors: MainColor),
+                border: const GradientBoxBorder(
+                  gradient: LinearGradient(colors: [
+                    Color(0xFF36093F),
+                    Color(0xFFE75A55),
+                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                  width: 1.5,
+                ),
+              ),
               child: Stack(
                 children: [
                   Padding(
@@ -410,10 +453,13 @@ ContainerWidget2(BuildContext context, String title, var ontap) {
             decoration: BoxDecoration(
               color: const Color(0xFF1E151C),
               borderRadius: BorderRadius.circular(ScreenSize.fSize_20()),
-              boxShadow: [
-                boxShadow,
-                boxShadow2,
-              ],
+              border: const GradientBoxBorder(
+                gradient: LinearGradient(colors: [
+                  Color(0xFF36093F),
+                  Color(0xFFE75A55),
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                width: 1.5,
+              ),
             ),
             child: Center(
               child: Image.asset(
@@ -437,15 +483,24 @@ backContainerWidget2(BuildContext context, String title, var ontap) {
           width: double.maxFinite,
           color: Colors.transparent,
           child: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.only(
+                right: ScreenSize.fSize_20(), left: ScreenSize.fSize_8()),
             child: Container(
               width: double.maxFinite,
               decoration: BoxDecoration(
-                  // color: const Color(0xFF1E151C),
-                  borderRadius:
-                      BorderRadius.all(Radius.circular(ScreenSize.fSize_15())),
-                  border: Border.all(color: const Color(0xFF1E151C)),
-                  gradient: LinearGradient(colors: MainColor)),
+                // color: const Color(0xFF1E151C),
+                borderRadius:
+                BorderRadius.all(Radius.circular(ScreenSize.fSize_15())),
+                // border: Border.all(color: const Color(0xFF1E151C)),
+                gradient: LinearGradient(colors: MainColor),
+                border: const GradientBoxBorder(
+                  gradient: LinearGradient(colors: [
+                    Color(0xFF36093F),
+                    Color(0xFFE75A55),
+                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                  width: 1.5,
+                ),
+              ),
               child: Stack(
                 children: [
                   Padding(
@@ -454,6 +509,7 @@ backContainerWidget2(BuildContext context, String title, var ontap) {
                         bottom: ScreenSize.fSize_20()),
                     child: Row(
                       children: [
+                        SizedBox(width: ScreenSize.fSize_25()),
                         Container(
                           width: ScreenSize.horizontalBlockSize! * 67,
                           color: Colors.transparent,
@@ -474,17 +530,20 @@ backContainerWidget2(BuildContext context, String title, var ontap) {
         ),
         Padding(
           padding: EdgeInsets.only(
-              left: ScreenSize.horizontalBlockSize! * 77,
+              left: ScreenSize.horizontalBlockSize! * 81,
               top: ScreenSize.fSize_20()),
           child: Container(
             width: ScreenSize.fSize_60(),
             decoration: BoxDecoration(
               color: const Color(0xFF1E151C),
               borderRadius: BorderRadius.circular(ScreenSize.fSize_20()),
-              boxShadow: [
-                boxShadow,
-                boxShadow2,
-              ],
+              border: const GradientBoxBorder(
+                gradient: LinearGradient(colors: [
+                  Color(0xFF36093F),
+                  Color(0xFFE75A55),
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                width: 1.5,
+              ),
             ),
             child: Center(
               child: Image.asset(

@@ -1,14 +1,21 @@
+// ignore_for_file: invalid_use_of_protected_member
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_daily_dimond/Data/Widgets/Mediaqure.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
-
 import '../../Services/notification/Notification and data load screen.dart';
 
-class LogoScreen extends StatelessWidget {
+class LogoScreen extends StatefulWidget {
   LogoScreen({super.key});
 
+  @override
+  State<LogoScreen> createState() => _LogoScreenState();
+}
+
+class _LogoScreenState extends State<LogoScreen> {
   AppController appController = Get.put(AppController());
 
   @override

@@ -9,10 +9,10 @@ import 'package:get_daily_dimond/main.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-final native = Get.put(NativeAD());
+final nativeAd = Get.put(NativeAD());
 final banner = Get.put(BannerAD());
 
-class NativeAD extends GetxController  {
+class NativeAD extends GetxController {
   Future<void> _launchURL(String url) async {
     late Uri uri = Uri(scheme: "https", host: url);
     if (!await launchUrl(
@@ -23,13 +23,13 @@ class NativeAD extends GetxController  {
     }
   }
 
-  Widget getNative(String factoryId) {
+  Widget getNative(String factoryId,String page) {
     NativeAd? nativeAd;
     var isLoaded = false.obs;
-    if (getfirebase.value[Get.currentRoute]["Native_Type"] == "admob") {
+    if (getfirebase.value[page]["Native_Type"] == "admob") {
       nativeAd = NativeAd(
         request: const AdManagerAdRequest(),
-        adUnitId: getfirebase.value[Get.currentRoute]["Native"],
+        adUnitId: getfirebase.value[page]["Native"],
         // adUnitId: "/6499/example/native",
         listener: NativeAdListener(onAdLoaded: (ad) {
           nativeAd!.load();
@@ -43,7 +43,7 @@ class NativeAD extends GetxController  {
       );
       nativeAd.load();
     }
-    return getfirebase.value[Get.currentRoute]["Native_Type"] == "admob"
+    return getfirebase.value[page]["Native_Type"] == "admob"
         ? Obx(() => (isLoaded.value)
             ? factoryId == "listTile"
                 ? Stack(
@@ -131,7 +131,7 @@ class NativeAD extends GetxController  {
                       child: CircularProgressIndicator(),
                     ),
                   ))
-        : getfirebase.value[Get.currentRoute]["Native_Type"] == "fb"
+        : getfirebase.value[page]["Native_Type"] == "fb"
             ? Container(
                 height: factoryId == "listTile"
                     ? ScreenSize.fSize_150()
@@ -148,30 +148,30 @@ class NativeAD extends GetxController  {
                 ),
                 child: FacebookNativeAd(
                   // placementId: "YOUR_PLACEMENT_ID",
-                  placementId: getfirebase.value["N_F_B_A"],
+                  placementId: getfirebase.value["Native_Facebook"],
                   // placementId:
                   //     "IMG_16_9_APP_INSTALL#2312433698835503_2964953543583512",
                   adType: NativeAdType.NATIVE_AD,
-                  height: factoryId == "listTile"
+                  height: factoryId == "listTileMedium"
                       ? ScreenSize.fSize_150()
                       : ScreenSize.fSize_250(),
                   width: ScreenSize.fSize_350(),
                   backgroundColor: Colors.white,
                   titleColor: Colors.black,
                   descriptionColor: Colors.grey,
-                  buttonTitleColor: Colors.black,
-                  buttonColor: Colors.red,
-                  buttonBorderColor: Colors.blue,
+                  buttonTitleColor: Colors.white,
+                  buttonColor: const Color(0xFF320B3A).withOpacity(0.8),
+                  buttonBorderColor: const Color(0xFFE65A55),
                   listener: (result, value) {
                     // print("Native Banner Ad: $result --> $value");
                   },
                 ),
               )
-            : getfirebase.value[Get.currentRoute]["Native_Type"] == "null"
+            : getfirebase.value[page]["Native_Type"] == "null"
                 ? Container()
                 : GestureDetector(
                     onTap: () {
-                      _launchURL(getfirebase.value[Get.currentRoute]["Link"]);
+                      _launchURL(getfirebase.value[page]["Link"]);
                     },
                     child: Stack(
                       children: [
@@ -186,7 +186,7 @@ class NativeAD extends GetxController  {
                               image: DecorationImage(
                                   fit: BoxFit.cover,
                                   image: NetworkImage(getfirebase
-                                      .value[Get.currentRoute]["Image_Link"]))),
+                                      .value[page]["Image_Link"]))),
                         ),
                         Positioned(
                           child: Container(
@@ -218,10 +218,10 @@ class BannerAD extends GetxController {
   // var bannerLoaded = false.obs;
 
   Widget getBN(String page) {
-    if (getfirebase.value["Banner_Type"] == "admob") {
+    if (getfirebase.value[page]["Banner_Type"] == "admob") {
       bannerAd = BannerAd(
         size: AdSize.banner,
-        adUnitId: getfirebase.value["Banner"],
+        adUnitId: getfirebase.value[page]["Banner"],
         // adUnitId: "ca-app-pub-3940256099942544/6300978111",
         listener: BannerAdListener(
             onAdLoaded: (ad) {
@@ -233,18 +233,8 @@ class BannerAD extends GetxController {
       bannerAd.load();
     }
 
-    return getfirebase.value["Banner_Type"] == "admob"
+    return getfirebase.value[page]["Banner_Type"] == "fb"
         ? Align(
-            alignment: Alignment.bottomCenter,
-            child: SizedBox(
-              // color: Colors.redAccent,
-              height: 50,
-              child: AdWidget(
-                ad: bannerAd,
-              ),
-            ),
-          )
-        : Align(
             alignment: Alignment.bottomCenter,
             child: SizedBox(
               // color: Colors.black12,
@@ -256,6 +246,16 @@ class BannerAD extends GetxController {
                   listener: (result, value) {
                     // print("Banner Ad: $result -->  $value");
                   }),
+            ),
+          )
+        : Align(
+            alignment: Alignment.bottomCenter,
+            child: SizedBox(
+              // color: Colors.redAccent,
+              height: 50,
+              child: AdWidget(
+                ad: bannerAd,
+              ),
             ),
           );
   }

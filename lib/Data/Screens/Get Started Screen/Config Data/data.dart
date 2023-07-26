@@ -35,7 +35,6 @@ class AppController extends GetxController with WidgetsBindingObserver {
             android: AndroidNotificationDetails(
               channel.id,
               channel.name,
-              channel.description,
               // color: Colors.blue,
               playSound: true,
               icon: "@drawable/ic_logo_launch",

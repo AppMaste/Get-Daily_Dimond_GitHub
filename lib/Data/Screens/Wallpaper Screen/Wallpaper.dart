@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:get_daily_dimond/Data/Controller/AD%20Controller.dart';
 import 'package:get_daily_dimond/Data/Controller/button%20Controller.dart';
 import 'package:get_daily_dimond/Data/Widgets/Mediaqure.dart';
 import 'package:get_daily_dimond/Data/Widgets/Widgets.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
-import 'Set Wallpaper.dart';
 
 class WallpaperPage extends StatelessWidget {
   WallpaperPage({super.key});
@@ -46,21 +45,29 @@ class WallpaperPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: appBar(context, "Wallpaper"),
-      body: Stack(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(bottom: ScreenSize.fSize_60()),
-            child: GridView.builder(
-              itemCount: list.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, mainAxisSpacing: 10.5, crossAxisSpacing: 8.5),
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GestureDetector(
+    return WillPopScope(
+      onWillPop: () {
+        backController.backbuttonWidget(context, "/WallpaperPage");
+        return Future(() => false);
+      },
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        appBar: appBar(context, "Wallpaper"),
+        body: Stack(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                  bottom: ScreenSize.fSize_60(),
+                  left: ScreenSize.fSize_6(),
+                  right: ScreenSize.fSize_6()),
+              child: GridView.builder(
+                itemCount: list.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 10.5,
+                    crossAxisSpacing: 8.5),
+                itemBuilder: (context, index) {
+                  return GestureDetector(
                     onTap: () {
                       tapController.buttonWidget(
                         context,
@@ -77,20 +84,32 @@ class WallpaperPage extends StatelessWidget {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        border: Border.all(strokeAlign: 0.9, color: Colors.red),
-                      ),
-                      child: Image.asset(
-                        list[index],
-                        fit: BoxFit.cover,
-                      ),
+                          // border: Border.all(strokeAlign: 0.9, color: Colors.red),
+                          border: const GradientBoxBorder(
+                            gradient: LinearGradient(
+                                colors: [
+                                  Color(0xFF36093F),
+                                  Color(0xFFE75A55),
+                                ],
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter),
+                            width: 1.5,
+                          ),
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(ScreenSize.fSize_15())),
+                          image: DecorationImage(
+                              image: AssetImage(
+                                list[index],
+                              ),
+                              fit: BoxFit.cover)),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
-          ),
-          banner.getBN("/WallpaperPage")
-        ],
+            banner.getBN("/WallpaperPage")
+          ],
+        ),
       ),
     );
   }

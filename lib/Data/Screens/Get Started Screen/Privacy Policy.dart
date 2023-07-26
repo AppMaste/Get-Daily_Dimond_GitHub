@@ -4,6 +4,8 @@ import 'package:get_daily_dimond/Data/Widgets/Mediaqure.dart';
 import 'package:get_daily_dimond/Data/Widgets/Widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../Controller/button Controller.dart';
+
 class PrivacyWebView extends StatefulWidget {
   const PrivacyWebView({super.key});
 
@@ -20,7 +22,7 @@ class _PrivacyWebViewState extends State<PrivacyWebView> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        // backController.backbuttonWidget(context, "/PrivacyWebView");
+        backController.backbuttonWidget(context, "/PrivacyWebView");
         return Future(() => false);
       },
       child: Scaffold(

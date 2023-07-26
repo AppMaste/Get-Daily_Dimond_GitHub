@@ -1,4 +1,5 @@
 // ignore_for_file: invalid_use_of_protected_member
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -41,7 +42,7 @@ final FirebaseRemoteConfig firebaseRemoteConfig = FirebaseRemoteConfig.instance;
 RxMap getfirebase = {}.obs;
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
-    "Hello", "Get Daily Diamond", "How are you!!",
+    "Hello", "Get Daily Diamond",
     importance: Importance.high, playSound: true);
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =

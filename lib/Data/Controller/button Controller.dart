@@ -158,6 +158,7 @@ class BackController extends GetxController {
             },
             child: Center(
               child: AlertDialog(
+                backgroundColor: Colors.white,
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(20),

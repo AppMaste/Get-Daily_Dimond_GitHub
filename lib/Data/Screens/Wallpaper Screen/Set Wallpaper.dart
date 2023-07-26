@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:flutter_wallpaper_manager/flutter_wallpaper_manager.dart';
 import 'package:get/get.dart';
+import 'package:get_daily_dimond/Data/Controller/button%20Controller.dart';
 import 'package:get_daily_dimond/Data/Widgets/Widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -43,48 +44,54 @@ class _SetWallpaperPageState extends State<SetWallpaperPage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionBubble(
-        items: [
-          Bubble(
-            title: "Home Screen",
-            iconColor: Colors.white,
-            bubbleColor: Colors.white38,
-            titleStyle:
-                GoogleFonts.beVietnamPro(fontSize: 16, color: Colors.white),
-            onPress: () async {
-              _animationController.reverse();
-              setWallpaperFromFileHome(argument[1]);
-            },
-            icon: Icons.wallpaper,
+    return WillPopScope(
+      onWillPop: () {
+        backController.backbuttonWidget(context, "/SetWallpaperPage");
+        return Future(() => false);
+      },
+      child: Scaffold(
+        floatingActionButton: FloatingActionBubble(
+          items: [
+            Bubble(
+              title: "Home Screen",
+              iconColor: Colors.white,
+              bubbleColor: Colors.white38,
+              titleStyle:
+                  GoogleFonts.beVietnamPro(fontSize: 16, color: Colors.white),
+              onPress: () async {
+                _animationController.reverse();
+                setWallpaperFromFileHome(argument[1]);
+              },
+              icon: Icons.wallpaper,
+            ),
+            Bubble(
+              title: "Lock Screen Wallpaper",
+              iconColor: Colors.white,
+              bubbleColor: Colors.white38,
+              titleStyle:
+                  GoogleFonts.beVietnamPro(fontSize: 16, color: Colors.white),
+              onPress: () {
+                _animationController.reverse();
+                setWallpaperFromFileLock(argument[1]);
+              },
+              icon: Icons.wallpaper,
+            ),
+          ],
+          animation: _animation,
+          onPress: () => _animationController.isCompleted
+              ? _animationController.reverse()
+              : _animationController.forward(),
+          iconColor: Colors.white,
+          iconData: Icons.more_vert,
+          backGroundColor: Colors.white38,
+        ),
+        backgroundColor: Colors.black,
+        appBar: appBar(context, "Set Wallpaper"),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(argument[0]), fit: BoxFit.cover),
           ),
-          Bubble(
-            title: "Lock Screen Wallpaper",
-            iconColor: Colors.white,
-            bubbleColor: Colors.white38,
-            titleStyle:
-                GoogleFonts.beVietnamPro(fontSize: 16, color: Colors.white),
-            onPress: () {
-              _animationController.reverse();
-              setWallpaperFromFileLock(argument[1]);
-            },
-            icon: Icons.wallpaper,
-          ),
-        ],
-        animation: _animation,
-        onPress: () => _animationController.isCompleted
-            ? _animationController.reverse()
-            : _animationController.forward(),
-        iconColor: Colors.white,
-        iconData: Icons.more_vert,
-        backGroundColor: Colors.white38,
-      ),
-      backgroundColor: Colors.black,
-      appBar: appBar(context, "Set Wallpaper"),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage(argument[0]), fit: BoxFit.cover),
         ),
       ),
     );

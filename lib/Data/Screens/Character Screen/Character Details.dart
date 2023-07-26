@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_daily_dimond/Data/Controller/AD%20Controller.dart';
 import 'package:get_daily_dimond/Data/Widgets/Widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
 import '../../Widgets/Mediaqure.dart';
 
@@ -13,7 +14,7 @@ class CharacterDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // print("argument ${argument}");
+    print("argument ${argument}");
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: appBar(context, "Characters Detail"),
@@ -33,6 +34,13 @@ class CharacterDetailPage extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(ScreenSize.fSize_20()),
                         gradient: LinearGradient(colors: MainColor),
+                        border: const GradientBoxBorder(
+                          gradient: LinearGradient(colors: [
+                            Color(0xFF36093F),
+                            Color(0xFFE75A55),
+                          ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                          width: 1.5,
+                        ),
                       ),
                       child: Center(
                         child: Padding(
@@ -52,7 +60,9 @@ class CharacterDetailPage extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: ScreenSize.fSize_40()),
-                  claimContainerWidget(context, 'Claim Now', () {}),
+                  claimContainerWidget(context, 'Claim Now', () {
+                    toast.show(context);
+                  }),
                   SizedBox(height: ScreenSize.fSize_20()),
                   Text(
                     argument[2] == " 			Special ability: !!!"

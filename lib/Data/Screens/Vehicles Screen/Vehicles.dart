@@ -4,6 +4,7 @@ import 'package:get_daily_dimond/Data/Controller/AD%20Controller.dart';
 import 'package:get_daily_dimond/Data/Controller/button%20Controller.dart';
 import 'package:get_daily_dimond/Data/Widgets/Widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart';
 
 import '../../Widgets/Mediaqure.dart';
 import 'Vehicles Detail.dart';
@@ -41,121 +42,67 @@ class VehiclesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: appBar(context, "Vehicles"),
-      body: Stack(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(
-                bottom: ScreenSize.fSize_60(),
-                right: ScreenSize.fSize_8(),
-                left: ScreenSize.fSize_8()),
-            child: ListView.builder(
-              itemCount: list.length,
-              itemBuilder: (context, index) {
-                return index.isEven
-                    ? Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.to(
-                              () => VehiclesDetailPage(),
-                              arguments: [
-                                list[index],
-                                image[index],
-                                list2[index],
-                              ],
-                            );
-                          },
-                          child: Container(
-                            // height: ScreenSize.fSize_60(),
-                            decoration: BoxDecoration(
+    return WillPopScope(
+      onWillPop: () {
+        backController.backbuttonWidget(context, "/VehiclesPage");
+        return Future(() => false);
+      },
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        appBar: appBar(context, "Vehicles"),
+        body: Stack(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                  bottom: ScreenSize.fSize_60(),
+                  right: ScreenSize.fSize_8(),
+                  left: ScreenSize.fSize_8()),
+              child: ListView.builder(
+                itemCount: list.length,
+                itemBuilder: (context, index) {
+                  return index.isEven
+                      ? Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.to(
+                                () => VehiclesDetailPage(),
+                                arguments: [
+                                  list[index],
+                                  image[index],
+                                  list2[index],
+                                ],
+                              );
+                            },
+                            child: Container(
+                              // height: ScreenSize.fSize_60(),
+                              decoration: BoxDecoration(
                                 // color: Colors.red,
                                 gradient: LinearGradient(colors: MainColor),
-                                borderRadius: BorderRadius.circular(
-                                    ScreenSize.fSize_15())),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: ScreenSize.fSize_8()),
-                                  child: Image.asset(
-                                    image[index],
-                                    scale: 3.0,
-                                  ),
+                                borderRadius:
+                                    BorderRadius.circular(ScreenSize.fSize_15()),
+                                border: const GradientBoxBorder(
+                                  gradient: LinearGradient(
+                                      colors: [
+                                        Color(0xFF36093F),
+                                        Color(0xFFE75A55),
+                                      ],
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter),
+                                  width: 1.5,
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: ScreenSize.fSize_20()),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(height: ScreenSize.fSize_6()),
-                                      Text(
-                                        list[index],
-                                        style: GoogleFonts.beVietnamPro(
-                                            fontSize: ScreenSize.fSize_17()),
-                                      ),
-                                      SizedBox(height: ScreenSize.fSize_6()),
-                                      Container(
-                                        width: ScreenSize.horizontalBlockSize! *
-                                            60,
-                                        color: Colors.transparent,
-                                        child: Text(
-                                          list2[index]
-                                              .toString()
-                                              .split("\u0009\u0009\u0009")[1],
-                                          overflow: TextOverflow.ellipsis,
-                                          style: GoogleFonts.beVietnamPro(
-                                              fontSize: ScreenSize.fSize_11()),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      )
-                    : Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: GestureDetector(
-                          onTap: () {
-                            tapController.buttonWidget(
-                              context,
-                              "/VehiclesDetailPage",
-                              [
-                                list[index],
-                                image[index],
-                                list2[index],
-                              ],
-                            );
-                            /*Get.to(
-                              () => VehiclesDetailPage(),
-                              arguments: [
-                                list[index],
-                                image[index],
-                                list2[index],
-                              ],
-                            );*/
-                          },
-                          child: Container(
-                            // height: ScreenSize.fSize_60(),
-                            decoration: BoxDecoration(
-                                // color: Colors.red,
-                                gradient: LinearGradient(colors: MainColor),
-                                borderRadius: BorderRadius.circular(
-                                    ScreenSize.fSize_15())),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              ),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        left: ScreenSize.fSize_8()),
+                                    child: Image.asset(
+                                      image[index],
+                                      scale: 3.0,
+                                    ),
+                                  ),
                                   Padding(
                                     padding: EdgeInsets.symmetric(
                                         vertical: ScreenSize.fSize_20()),
@@ -171,9 +118,8 @@ class VehiclesPage extends StatelessWidget {
                                         ),
                                         SizedBox(height: ScreenSize.fSize_6()),
                                         Container(
-                                          width:
-                                              ScreenSize.horizontalBlockSize! *
-                                                  60,
+                                          width: ScreenSize.horizontalBlockSize! *
+                                              60,
                                           color: Colors.transparent,
                                           child: Text(
                                             list2[index]
@@ -181,29 +127,109 @@ class VehiclesPage extends StatelessWidget {
                                                 .split("\u0009\u0009\u0009")[1],
                                             overflow: TextOverflow.ellipsis,
                                             style: GoogleFonts.beVietnamPro(
-                                                fontSize:
-                                                    ScreenSize.fSize_11()),
+                                                fontSize: ScreenSize.fSize_11()),
                                           ),
                                         ),
                                       ],
                                     ),
                                   ),
-                                  Image.asset(
-                                    image[index],
-                                    scale: 3.0,
-                                    // style: GoogleFonts.beVietnamPro(),
-                                  ),
                                 ],
                               ),
                             ),
                           ),
-                        ),
-                      );
-              },
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              tapController.buttonWidget(
+                                context,
+                                "/VehiclesDetailPage",
+                                [
+                                  list[index],
+                                  image[index],
+                                  list2[index],
+                                ],
+                              );
+                              /*Get.to(
+                                () => VehiclesDetailPage(),
+                                arguments: [
+                                  list[index],
+                                  image[index],
+                                  list2[index],
+                                ],
+                              );*/
+                            },
+                            child: Container(
+                              // height: ScreenSize.fSize_60(),
+                              decoration: BoxDecoration(
+                                // color: Colors.red,
+                                gradient: LinearGradient(colors: MainColor),
+                                borderRadius:
+                                    BorderRadius.circular(ScreenSize.fSize_15()),
+                                border: const GradientBoxBorder(
+                                  gradient: LinearGradient(colors: [
+                                    Color(0xFF36093F),
+                                    Color(0xFFE75A55),
+                                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                                  width: 1.5,
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: ScreenSize.fSize_20()),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          SizedBox(height: ScreenSize.fSize_6()),
+                                          Text(
+                                            list[index],
+                                            style: GoogleFonts.beVietnamPro(
+                                                fontSize: ScreenSize.fSize_17()),
+                                          ),
+                                          SizedBox(height: ScreenSize.fSize_6()),
+                                          Container(
+                                            width:
+                                                ScreenSize.horizontalBlockSize! *
+                                                    60,
+                                            color: Colors.transparent,
+                                            child: Text(
+                                              list2[index]
+                                                  .toString()
+                                                  .split("\u0009\u0009\u0009")[1],
+                                              overflow: TextOverflow.ellipsis,
+                                              style: GoogleFonts.beVietnamPro(
+                                                  fontSize:
+                                                      ScreenSize.fSize_11()),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Image.asset(
+                                      image[index],
+                                      scale: 3.0,
+                                      // style: GoogleFonts.beVietnamPro(),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                },
+              ),
             ),
-          ),
-          banner.getBN("/VehiclesPage")
-        ],
+            banner.getBN("/VehiclesPage")
+          ],
+        ),
       ),
     );
   }

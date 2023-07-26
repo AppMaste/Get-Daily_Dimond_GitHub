@@ -6,10 +6,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:get_daily_dimond/Data/Screens/Get%20Started%20Screen/Get%20Started.dart';
+import 'package:timezone/data/latest.dart' as tz;
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+
 
 import '../../../main.dart';
 import '../App open Ad/AppOpenAd.dart';
+import '../notifi_service.dart';
 
 class AppController extends GetxController with WidgetsBindingObserver {
   AppOpenAdManager appOpenAdManager = AppOpenAdManager();
@@ -31,7 +34,6 @@ class AppController extends GetxController with WidgetsBindingObserver {
             android: AndroidNotificationDetails(
               channel.id,
               channel.name,
-              channel.description,
               // color: Colors.blue,
               playSound: true,
               icon: "@drawable/ic_logo_launch",
@@ -55,13 +57,20 @@ class AppController extends GetxController with WidgetsBindingObserver {
     if (getfirebase.value.isNotEmpty) {
       appopenAd();
       Future.delayed(const Duration(seconds: 3), () {
-        Get.offAllNamed("/GetStartedPage");
+        Get.offAll(() => const GetStartedPage());
       });
     } else {
       getfirebase.value =
           await json.decode(firebaseRemoteConfig.getString("diamond"));
       // update();
       AdData();
+      tz.initializeTimeZones();
+      NotificationService().showNotification(
+        1,
+        getfirebase.value["Notification_Title"],
+        getfirebase.value["Notification_Body"],
+        getfirebase.value["Notification_Time"],
+      );
     }
   }
 
@@ -94,7 +103,8 @@ class AppController extends GetxController with WidgetsBindingObserver {
       Paused = true;
     }
     if (state == AppLifecycleState.resumed) {
-      if (adCounter.value == getfirebase.value["Back_Interstitial_Counter"] && Loaded.value == true) {
+      if (adCounter.value == getfirebase.value["Back_Interstitial_Counter"] &&
+          Loaded.value == true) {
         adCounter.value = 1;
         // if (Loaded.value == true) {
         _appOpenAd?.show();
