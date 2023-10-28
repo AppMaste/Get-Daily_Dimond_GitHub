@@ -103,7 +103,7 @@ class _SetWallpaperPageState extends State<SetWallpaperPage>
     });
     String result;
     var file = await DefaultCacheManager().getSingleFile(image);
-    // Platform messages may fail, so we use a try/catch PlatformException.
+    // Platform messages may fail, so we use a try/catch PlatformException.`
     try {
       result = (await AsyncWallpaper.setWallpaperFromFile(
         wallpaperLocation: AsyncWallpaper.HOME_SCREEN,

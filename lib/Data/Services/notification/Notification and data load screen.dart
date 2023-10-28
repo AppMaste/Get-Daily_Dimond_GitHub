@@ -14,7 +14,7 @@ import '../../../main.dart';
 import '../App open Ad/AppOpenAd.dart';
 import '../notifi_service.dart';
 
-class AppController extends GetxController with WidgetsBindingObserver {
+class   AppController extends GetxController with WidgetsBindingObserver {
   AppOpenAdManager appOpenAdManager = AppOpenAdManager();
   bool Paused = false;
   var Loaded = false.obs;

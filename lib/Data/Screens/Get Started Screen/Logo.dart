@@ -9,7 +9,7 @@ import 'package:simple_gradient_text/simple_gradient_text.dart';
 import '../../Services/notification/Notification and data load screen.dart';
 
 class LogoScreen extends StatefulWidget {
-  LogoScreen({super.key});
+  const LogoScreen({super.key});
 
   @override
   State<LogoScreen> createState() => _LogoScreenState();
